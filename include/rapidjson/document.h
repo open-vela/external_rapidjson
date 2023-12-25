@@ -22,6 +22,7 @@
 #include "internal/strfunc.h"
 #include "memorystream.h"
 #include "encodedstream.h"
+#include <algorithm>
 #include <new>      // placement new
 #include <limits>
 
