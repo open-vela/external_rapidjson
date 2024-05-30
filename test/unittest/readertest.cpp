@@ -493,14 +493,14 @@ TEST(Reader, ParseString) {
         GenericReader<Encoding, Encoding> reader; \
         reader.Parse<kParseInsituFlag | kParseValidateEncodingFlag>(is, h); \
         EXPECT_EQ(0, StrCmp<Encoding::Ch>(e, h.str_)); \
-        EXPECT_EQ(StrLen(e), h.length_); \
+        EXPECT_EQ(::StrLen(e), h.length_); \
         free(buffer); \
         GenericStringStream<Encoding> s(x); \
         ParseStringHandler<Encoding> h2; \
         GenericReader<Encoding, Encoding> reader2; \
         reader2.Parse(s, h2); \
         EXPECT_EQ(0, StrCmp<Encoding::Ch>(e, h2.str_)); \
-        EXPECT_EQ(StrLen(e), h2.length_); \
+        EXPECT_EQ(::StrLen(e), h2.length_); \
     }
 
     // String constant L"\xXX" can only specify character code in bytes, which is not endianness-neutral.
@@ -577,7 +577,7 @@ TEST(Reader, ParseString_Transcoding) {
     ParseStringHandler<UTF16<> > h;
     reader.Parse(is, h);
     EXPECT_EQ(0, StrCmp<UTF16<>::Ch>(e, h.str_));
-    EXPECT_EQ(StrLen(e), h.length_);
+    EXPECT_EQ(::StrLen(e), h.length_);
 }
 
 TEST(Reader, ParseString_TranscodingWithValidation) {
@@ -588,7 +588,7 @@ TEST(Reader, ParseString_TranscodingWithValidation) {
     ParseStringHandler<UTF16<> > h;
     reader.Parse<kParseValidateEncodingFlag>(is, h);
     EXPECT_EQ(0, StrCmp<UTF16<>::Ch>(e, h.str_));
-    EXPECT_EQ(StrLen(e), h.length_);
+    EXPECT_EQ(::StrLen(e), h.length_);
 }
 
 TEST(Reader, ParseString_NonDestructive) {
