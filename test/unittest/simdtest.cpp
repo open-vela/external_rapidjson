@@ -35,7 +35,7 @@ RAPIDJSON_DIAG_PUSH
 RAPIDJSON_DIAG_OFF(effc++)
 #endif
 
-using namespace rapidjson_simd;
+namespace rapidjson_simd {
 
 #ifdef RAPIDJSON_SSE2
 #define SIMD_SUFFIX(name) name##_SSE2
@@ -208,6 +208,7 @@ TEST(SIMD, SIMD_SUFFIX(ScanWriteUnescapedString)) {
             EXPECT_EQ('\0', *q++);
         }
     }
+}
 }
 
 #ifdef __GNUC__
